@@ -43,13 +43,14 @@ public class Api
     {
         var items = itemRepository.findAll();
 
-        if (name != null && !name.trim().isEmpty()) 
+        if(name != null && !name.trim().isEmpty()) 
         {
             items = items.stream().filter(t -> t.getName().toLowerCase().contains(name.toLowerCase())).toList();
         }
 
         model.addAttribute("items", items);
         model.addAttribute("name", name);
+        model.addAttribute("images", imageRepository.findAll());
 
         return "items_list";
     }
@@ -64,7 +65,7 @@ public class Api
     {
         var images = imageRepository.findAll();
 
-        if (id != null) 
+        if(id != null) 
         {
             images = images.stream().filter(t -> t.getId() == id).toList();
         }
@@ -86,8 +87,9 @@ public class Api
     @GetMapping("/new_image")
     String novaImagem(Model model) 
     {
-        model.addAttribute("image", new Item());
-        
+        model.addAttribute("image", new Image());
+        model.addAttribute("image", imageRepository.findAll());
+
         return "new_image";
     }
 
@@ -100,7 +102,7 @@ public class Api
         RedirectAttributes ra
     ) 
     {
-        if (br.hasErrors()) 
+        if(br.hasErrors()) 
         {
             model.addAttribute("item", item);
             model.addAttribute("erros", "Erro ao salvar item, preencha os campos corretamente.");
@@ -152,9 +154,9 @@ public class Api
     {
         var item = itemRepository.findById(id);
 
-        if (item.isEmpty()) 
+        if(item.isEmpty()) 
         {
-            return "redirect:/api/item/{itemId}/edit";
+            return "redirect:/api/list_items";
         }
 
         model.addAttribute("item", item.get());

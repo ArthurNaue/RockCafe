@@ -32,28 +32,24 @@ public class FileUploadController
         {
             Path uploadPath = Paths.get(UPLOAD_DIR);
 
-            if (!Files.exists(uploadPath)) 
+            if(!Files.exists(uploadPath)) 
             {
                 Files.createDirectories(uploadPath);
             }
 
-            Integer fileNumber = 0;
-            
-            if(imageRepository.findAll() != null)
-            {
-                for(Image image: imageRepository.findAll())
-                {
-                    fileNumber += 1;
-                }
-            }
+            Long fileNumber = imageRepository.count();
 
             String fileName = fileNumber.toString() + ".png";
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(file.getInputStream(), filePath);
 
+            Image image = new Image();
+            image.setUrlimg(fileName);
+            imageRepository.save(image);
+
             return ResponseEntity.ok("/images/" + fileName);
         }
-        catch (IOException error) 
+        catch(IOException error) 
         {
             return ResponseEntity.status(500).body("Erro ao enviar arquivo: " + error.getMessage());
         }

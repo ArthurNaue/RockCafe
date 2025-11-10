@@ -1,7 +1,11 @@
 package com.RockCafe.model;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,6 +22,16 @@ public class Item
    private String itemdesc;
    private Float price;
 
+   private String imageid;
+
+   public enum itemType {
+      PERMANENTE, TEMPORARIO
+   }
+
+   @Enumerated(EnumType.STRING)
+   private itemType itemType;
+   private Date itemTime;
+
    public Float getPrice() 
    {
       return price;
@@ -30,31 +44,60 @@ public class Item
 
    public Long getId() 
    {
-    return id;
+      return id;
    }
 
    public void setId(Long id) 
    {
-    this.id = id;
+      this.id = id;
    }
 
    public String getName() 
    {
-    return name;
+      return name;
    }
 
    public void setName(String name) 
    {
-    this.name = name;
+      this.name = name;
    }
 
    public String getItemdesc() 
    {
-    return itemdesc;
+      return itemdesc;
    }
 
    public void setItemdesc(String newItemDesc) 
    {
-    this.itemdesc = newItemDesc;
+      this.itemdesc = newItemDesc;
+   }
+
+   public itemType getItemType() 
+   {
+      return itemType;
+   }
+
+   public void setItemType(itemType newItemType) 
+   {
+      this.itemType = newItemType;
+   }
+
+   public Date getItemTime() {
+      return itemTime;
+   }
+
+   public void setItemTime(Date newItemTime) 
+   {
+      this.itemTime = newItemTime;
+   }
+
+   public String getImageid() 
+   {
+      return imageid;
+   }
+
+   public void setImageid(String newImageid) 
+   {
+      this.imageid = newImageid;
    }
 }

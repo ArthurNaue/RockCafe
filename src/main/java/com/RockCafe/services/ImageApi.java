@@ -49,8 +49,8 @@ public class ImageApi
     public ResponseEntity<Image> search(@PathVariable Long id) 
     {
         return repo.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")

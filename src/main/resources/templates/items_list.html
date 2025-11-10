@@ -39,7 +39,14 @@
                     <p th:text="${item.itemdesc}">Descrição</p>
 
                     <p th:text="${item.price}"></p>
+                    <p th:text="${item.itemTime}"></p>
 
+                    <div th:each="image : ${images}">
+                        <div th:if="${image.urlimg == item.imageid}">
+                            <img th:src="@{'/images/' + ${image.urlimg}}" style="max-width:200px;"/>
+                        </div>
+                    </div>
+                    
                     <div class="d-flex justify-content-between mt-2">
                         <a th:href="@{'/api/' + ${item.id} + '/editItem'}" class="btn btn-outline-dark">Editar</a>
                         <form th:action="@{'/api/' + ${item.id} + '/deleteItem'}" method="post" class="d-inline">

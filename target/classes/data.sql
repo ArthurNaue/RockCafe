@@ -1,1 +1,1 @@
-INSERT INTO item(name, itemdesc, price) VALUES('item1test', 'descrição de teste item1', 10.0);
+INSERT INTO item(name, itemdesc, price, item_type) VALUES('item1test', 'descrição de teste item1', 10.0, 'PERMANENTE');

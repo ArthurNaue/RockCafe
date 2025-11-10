@@ -29,7 +29,7 @@ public class ItemApi
     @PostMapping
     public ResponseEntity<Item> createNewItem(@RequestBody Item item)
     {
-        if (repo.existsByName(item.getName())) 
+        if(repo.existsByName(item.getName())) 
         {
             return ResponseEntity.badRequest().build();
         }
@@ -49,8 +49,8 @@ public class ItemApi
     public ResponseEntity<Item> search(@PathVariable Long id) 
     {
         return repo.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
