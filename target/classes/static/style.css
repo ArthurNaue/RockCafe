@@ -1,6 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/pp-pangaia');
+
+* {
+    font-family: 'PP Pangaia', sans-serif;
+    box-sizing: border-box;
+}
+
 body 
 {
-    font-family: Arial, sans-serif;
     background-color: #fff;
     margin: 0;
     padding: 0;
