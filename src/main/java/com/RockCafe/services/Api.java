@@ -48,8 +48,14 @@ public class Api
             items = items.stream().filter(t -> t.getName().toLowerCase().contains(name.toLowerCase())).toList();
         }
 
+        if(price != null)
+        {
+            items = items.stream().filter(t -> t.getPrice() != null && Math.abs(t.getPrice() - price) < 0.0001).toList();
+        }
+
         model.addAttribute("items", items);
         model.addAttribute("name", name);
+        model.addAttribute("price", price);
         model.addAttribute("images", imageRepository.findAll());
 
         return "items_list";
